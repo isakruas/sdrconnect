@@ -84,6 +84,7 @@ class SpyServerClient(BaseSDRClient):
 
             # Wait for device info
             self.device_info = self._wait_for_device_info()
+            self.config.sample_rate = self.device_info.get("MaximumSampleRate", 2048000)
 
             self.is_connected = True
             logger.info(

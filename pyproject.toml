@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sdrconnect"
-version = "0.1.0"
+version = "0.1.1"
 description = "Modern Python library for SDR connectivity and data collection"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -33,6 +33,7 @@ keywords = ["sdr", "spyserver", "rtl-sdr", "data-collection", "radio"]
 requires-python = ">=3.8"
 dependencies = [
     "numpy>=1.20.0",
+    "scipy>=1.16.1"
 ]
 
 [project.optional-dependencies]
@@ -50,7 +51,7 @@ docs = [
     "myst-parser>=0.18.0",
 ]
 viz = [
-    "matplotlib>=3.5.0",
+    "matplotlib>=3.5.0"
 ]
 
 [project.urls]

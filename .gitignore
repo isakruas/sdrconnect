@@ -71,3 +71,4 @@ tmp/
 config.json
 secrets.json
 .env 
+*.pdf

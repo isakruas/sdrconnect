@@ -16,13 +16,13 @@ limitations under the License.
 
 # SDRConnect: A Python package for connecting to and managing Software Defined Radio (SDR) devices.
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = "Isak Ruas"
 __email__ = "isakruas@gmail.com"
 
 from .clients.rtlsdr import RTLSDRClient
 from .clients.spyserver import SpyServerClient
-from .core.analysis import plot
+from .core.analysis import analyze_signal
 from .core.config import SDRConfig
 from .core.exceptions import ConfigurationError, ConnectionError, SDRConnectError
 
@@ -33,5 +33,5 @@ __all__ = [
     "SDRConnectError",
     "ConnectionError",
     "ConfigurationError",
-    "plot",
+    "analyze_signal",
 ]

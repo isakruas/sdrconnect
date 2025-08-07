@@ -29,7 +29,6 @@ config = sdr.SDRConfig(
     host="localhost",  # Change to your SpyServer host
     port=5555,         # Change to your SpyServer port
     frequency=100_000_000,  # 100 MHz
-    sample_rate=2_048_000,  # 2.048 MHz
     timeout=5.0
 )
 
@@ -48,9 +47,10 @@ try:
         print("Starting streaming...")
         client.start_streaming()
         
-        # Collect data for 5 seconds
-        print("Collecting IQ data for 5 seconds...")
-        iq_data = client.read_samples_timeout(5.0)
+        # Collect data for duration_seconds seconds
+        duration_seconds = 5.0
+        print(f"Collecting IQ data for {duration_seconds} seconds...")
+        iq_data = client.read_samples_timeout(duration_seconds)
 
         # Save data for later processing
         np.save("iq_data.npy", iq_data)
@@ -60,17 +60,13 @@ try:
         print(f"Center frequency: {config.frequency / 1e6:.1f} MHz")
         
         # Analyze the data
-        print("Computing spectrogram and PSD...")
-        spectrogram, mean_psd, freq_axis, time_axis = sdr.plot(
+        spectrogram, mean_psd, freq_axis, time_axis = sdr.analyze_signal(
             data=iq_data,
             sample_rate=config.sample_rate,
             fft_size=1024
         )
         
-        print("Analysis complete!")
-        print(f"Spectrogram shape: {spectrogram.shape}")
-        print(f"Frequency range: {freq_axis[0]:.2f} to {freq_axis[-1]:.2f} MHz")
-        print(f"Time range: 0 to {time_axis[-1]:.2f} seconds")
+        print("Analysis complete!") 
         
 except sdr.SDRConnectError as e:
     print(f"Connection error: {e}")
@@ -88,7 +84,6 @@ config = sdr.SDRConfig(
     host="localhost",
     port=5555,
     frequency=433_920_000,  # 433.92 MHz
-    sample_rate=2_400_000,  # 2.4 MHz
     gain=20,                # Manual gain
     iq_format="complex64",  # or "uint8"
     timeout=30.0
