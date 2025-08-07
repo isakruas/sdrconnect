@@ -2,6 +2,8 @@
 
 Modern Python library for SDR connectivity and data collection. Focused exclusively on connecting to SDR devices and collecting raw IQ data.
 
+[![Latest Version](https://img.shields.io/pypi/v/sdrconnect.svg?style=flat)](https://pypi.python.org/pypi/sdrconnect/)
+
 ## Features
 
 - **SpyServer Support**: Connect to SpyServer instances for remote SDR access
