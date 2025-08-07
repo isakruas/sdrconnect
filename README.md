@@ -78,43 +78,6 @@ except Exception as e:
     print(f"Unexpected error: {e}")
 ```
 
-### Manual Connection
-
-```python
-import sdrconnect as sdr
-
-# Create configuration for SpyServer
-config = sdr.SDRConfig(
-    host="localhost",  # Change to your SpyServer host
-    port=5555,         # Change to your SpyServer port
-    frequency=100_000_000,  # 100 MHz
-    sample_rate=2_048_000,  # 2.048 MHz
-    timeout=5.0
-)
-
-# Create client
-client = sdr.SpyServerClient(config)
-
-try:
-    # Connect
-    client.connect()
-    
-    # Configure
-    client.set_frequency(145_000_000)  # 145 MHz
-    client.set_sample_rate(1_024_000)  # 1.024 MHz
-    client.set_gain(None)  # Auto gain
-    
-    # Start streaming
-    client.start_streaming()
-    
-    # Read samples
-    samples = client.read_samples(100_000)  # 100k samples
-    
-finally:
-    client.stop_streaming()
-    client.disconnect()
-```
-
 ## Configuration
 
 SDRConnect uses configuration objects for easy management:
