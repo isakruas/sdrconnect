@@ -60,7 +60,7 @@ try:
         print(f"Center frequency: {config.frequency / 1e6:.1f} MHz")
         
         # Analyze the data
-        spectrogram, mean_psd, freq_axis, time_axis = sdr.analyze_signal(
+        spectrogram, mean_psd, freq_axis, time_axis, _ = sdr.analyze_signal(
             data=iq_data,
             sample_rate=config.sample_rate,
             fft_size=1024
